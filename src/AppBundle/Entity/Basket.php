@@ -18,7 +18,7 @@ class Basket implements \Countable
      * @ORM\Id
      * @ORM\Column(name="id", type="string")
      * @ORM\GeneratedValue(strategy="UUID")
-     * @var int
+     * @var string
      */
     private $id;
 
@@ -26,7 +26,7 @@ class Basket implements \Countable
      * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\Product")
      * @var Product[]|ArrayCollection
      */
-    protected $products = [];
+    protected $products;
 
     /**
      * @ORM\Column(type="string")
@@ -40,10 +40,21 @@ class Basket implements \Countable
      */
     protected $productsPrice = 0.0;
 
+    /**
+     * @param string $session
+     */
     public function __construct($session)
     {
         $this->session = $session;
         $this->products = new ArrayCollection;
+    }
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -68,14 +79,9 @@ class Basket implements \Countable
      */
     public function getTotalPrice()
     {
-        $price = 0;
-        foreach($this->products as $product) {
-            $price += $product->getPrice();
-        }
+        $delivery = ($this->productsPrice > 100) ? 0 : 10;
 
-        $delivery = ($price > 100) ? 0 : 10;
-
-        return $price + $delivery;
+        return $this->productsPrice + $delivery;
     }
 
     /**
@@ -103,19 +109,11 @@ class Basket implements \Countable
     }
 
     /**
-     * @return int
+     * @param string $session
      */
-    public function getId()
+    public function setSession($session)
     {
-        return $this->id;
-    }
-
-    /**
-     * @param string $sessionId
-     */
-    public function setSession($sessionId)
-    {
-        $this->session = $sessionId;
+        $this->session = $session;
     }
 
     /**

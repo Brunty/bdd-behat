@@ -12,21 +12,21 @@ class Product
 
     /**
      * @ORM\Id
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @var int
+     * @ORM\Column(name="id", type="string")
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @var string
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=32)
+     * @ORM\Column(type="string", length=255)
      * @var string
      */
     private $name;
 
     /**
      * @ORM\Column(type="float")
-     * @var string
+     * @var float
      */
     private $price = 0.00;
 
@@ -38,6 +38,14 @@ class Product
     {
         $this->name = $name;
         $this->price = $price;
+    }
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -70,13 +78,5 @@ class Product
     public function setName($name)
     {
         $this->name = $name;
-    }
-
-    /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 }
