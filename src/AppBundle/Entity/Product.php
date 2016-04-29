@@ -2,42 +2,40 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
-/**
- * @ORM\Entity(repositoryClass="\AppBundle\Repository\ProductRepository")
- */
 class Product
 {
 
     /**
-     * @ORM\Id
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      * @var int
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=32)
      * @var string
      */
     private $name;
 
     /**
-     * @ORM\Column(type="float")
-     * @var string
+     * @var float
      */
     private $price = 0.00;
 
     /**
-     * @param $name
-     * @param $price
+     * @param string $name
+     * @param float  $price
      */
     public function __construct($name, $price)
     {
         $this->name = $name;
         $this->price = $price;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -70,13 +68,5 @@ class Product
     public function setName($name)
     {
         $this->name = $name;
-    }
-
-    /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 }

@@ -46,7 +46,7 @@ class Basket implements \Countable
      */
     public function addProduct(Product $product)
     {
-
+        // TODO - implement this
     }
 
     /**
@@ -54,7 +54,7 @@ class Basket implements \Countable
      */
     public function getProducts()
     {
-
+        // TODO - implement this
     }
 
     /**
@@ -62,7 +62,7 @@ class Basket implements \Countable
      */
     public function getTotalPrice()
     {
-
+        // TODO - implement this
     }
 
     /**
@@ -70,23 +70,7 @@ class Basket implements \Countable
      */
     public function count()
     {
-
-    }
-
-    /**
-     * @return float
-     */
-    public function getProductsPrice()
-    {
-
-    }
-
-    /**
-     * @param float $productsPrice
-     */
-    public function setProductsPrice($productsPrice)
-    {
-
+        // TODO - implement this
     }
 
     /**
