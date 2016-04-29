@@ -19,19 +19,9 @@ class Basket implements \Countable
     protected $products = [];
 
     /**
-     * @var string
-     */
-    protected $session;
-
-    /**
      * @var float
      */
     protected $productsPrice = 0.0;
-
-    public function __construct($session)
-    {
-        $this->session = $session;
-    }
 
     /**
      * @return int
@@ -71,21 +61,5 @@ class Basket implements \Countable
     public function count()
     {
         // TODO - implement this
-    }
-
-    /**
-     * @param string $sessionId
-     */
-    public function setSession($sessionId)
-    {
-        $this->session = $sessionId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSession()
-    {
-        return $this->session;
     }
 }
