@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Acme Store</h1>
+    <h2>Check out these amazing products:</h2>
+    <ul>
+        {% for product in products %}
+            <li><a href="{{ path('product_view', {id: product.id}) }}">{{ product.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,26 @@
+default:
+    suites:
+        domain:
+            filters:
+                tags: "@domain&&~@wip&&~@inprog"
+            contexts:
+                - Contexts\Domain\BasketDomainContext
+        wip:
+            filters:
+                tags: "@wip,@inprog"
+        webui:
+            filters:
+                tags: "@webui&&~@wip"
+            contexts:
+                - Contexts\WebUi\BasketWebUiContext
+                - Contexts\DB\SchemaContext
+    autoload:
+        '': %paths.base%/features/bootstrap
+    extensions:
+        Behat\MinkExtension:
+            base_url:  'http://127.0.0.1:8000'
+            sessions:
+                default:
+                    goutte: ~
+        SensioLabs\Behat\PageObjectExtension: ~
+        Behat\Symfony2Extension: ~

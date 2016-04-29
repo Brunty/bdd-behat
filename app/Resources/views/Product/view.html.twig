@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>{{ product.name }}</h1>
+
+    <h2>&pound;{{ product.price }}</h2>
+
+    <form action="{{ path('basket_add') }}" method="POST">
+        <input type="hidden" name="product_id" value="{{ product.id }}">
+        <button>Add to basket</button>
+    </form>
+{% endblock %}

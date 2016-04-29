@@ -1,0 +1,20 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>Your Basket</h1>
+
+    {% if basket %}
+        <h2>
+            <span id="numberOfItems">{{ basket|length }}</span> item{% if basket|length != 1 %}s{% endif %}:
+            &pound;<span id="basketTotalPrice">{{ basket.totalPrice }}</span>
+        </h2>
+
+        <ul>
+            {% for product in basket.products %}
+                <li>{{ product.name }} - &pound;{{ product.price }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        No products in your basket.
+    {% endif %}
+{% endblock %}
