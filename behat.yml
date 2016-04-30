@@ -5,15 +5,6 @@ default:
                 tags: "@domain&&~@wip&&~@inprog"
             contexts:
                 - Contexts\Domain\BasketDomainContext
-        wip:
-            filters:
-                tags: "@wip,@inprog"
-        webui:
-            filters:
-                tags: "@webui&&~@wip"
-            contexts:
-                - Contexts\WebUi\BasketWebUiContext
-                - Contexts\DB\SchemaContext
     autoload:
         '': %paths.base%/features/bootstrap
     extensions:
