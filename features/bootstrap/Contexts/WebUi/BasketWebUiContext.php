@@ -21,9 +21,9 @@ class BasketWebUiContext extends MinkContext implements KernelAwareContext, Snip
     /**
      * @Given there is a :productName, which costs £:price
      */
-    public function thereIsAWhichCostsPs($productname, $price)
+    public function thereIsAWhichCostsPs($productName, $price)
     {
-        $product = new Product($productname, $price);
+        $product = new Product($productName, $price);
         $em = $this->getEntityManager();
         $em->persist($product);
         $em->flush();
