@@ -6,10 +6,10 @@ trait PriceTransformer
 {
 
     /**
-     *
+     * @Transform :price
      */
     public function castPriceToFloat($price)
     {
-        // TODO
+        return floatval($price);
     }
 }

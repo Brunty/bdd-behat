@@ -36,7 +36,8 @@ class Basket implements \Countable
      */
     public function addProduct(Product $product)
     {
-        // TODO - implement this
+        $this->products[] = $product;
+        $this->productsPrice += $product->getPrice();
     }
 
     /**
@@ -44,7 +45,10 @@ class Basket implements \Countable
      */
     public function getTotalPrice()
     {
-        // TODO - implement this
+        $productsPrice = $this->productsPrice;
+        $delivery = $productsPrice > 100 ? 0 : 10;
+
+        return $productsPrice + $delivery;
     }
 
     /**
@@ -52,6 +56,6 @@ class Basket implements \Countable
      */
     public function count()
     {
-        // TODO - implement this
+        return count($this->products);
     }
 }

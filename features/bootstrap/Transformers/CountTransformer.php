@@ -6,10 +6,10 @@ trait CountTransformer
 {
 
     /**
-     *
+     * @Transform :count
      */
     public function castCountToInteger($count)
     {
-        // TODO
+        return intval($count);
     }
 }
