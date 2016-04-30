@@ -40,14 +40,6 @@ class Basket implements \Countable
     }
 
     /**
-     * @return Product[]
-     */
-    public function getProducts()
-    {
-        // TODO - implement this
-    }
-
-    /**
      * @return float
      */
     public function getTotalPrice()
