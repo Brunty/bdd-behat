@@ -1,6 +1,6 @@
 {
     "name": "brunty/bdd.behat",
-    "license": "proprietary",
+    "license": "MIT",
     "type": "project",
     "minimum-stability": "RC",
     "autoload": {
