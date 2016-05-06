@@ -69,7 +69,7 @@ class Basket implements \Countable
     public function getTotalPrice()
     {
         $price = 0;
-        foreach($this->products as $product) {
+        foreach ($this->products as $product) {
             $price += $product->getPrice();
         }
 
