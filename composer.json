@@ -1,5 +1,6 @@
 {
     "name": "brunty/bdd.behat",
+    "description": "Repository used for the BDD & Behat talks I give.",
     "license": "MIT",
     "type": "project",
     "minimum-stability": "RC",
