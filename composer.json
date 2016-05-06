@@ -6,7 +6,7 @@
     "minimum-stability": "RC",
     "autoload": {
         "psr-4": {
-            "AppBundle": "src/AppBundle/"
+            "AppBundle\\": "src/AppBundle/"
         },
         "classmap": [
             "app/AppKernel.php",
