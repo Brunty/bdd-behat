@@ -21,7 +21,7 @@ class BasketController extends Controller
     public function addToBasketAction(Request $request)
     {
         $productId = $request->get('product_id');
-        $product = $this->get('doctrine.orm.default_entity_manager')->getRepository(Product::class)->find($productId);
+        $product = $this->getProductRepo()->find($productId);
 
         if ( ! $product) {
             throw new NotFoundHttpException('Product could not be found');
@@ -70,6 +70,14 @@ class BasketController extends Controller
     private function getBasketRepo()
     {
         return $this->getEntityManager()->getRepository(Basket::class);
+    }
+
+    /**
+     * @return \Doctrine\ORM\EntityRepository
+     */
+    private function getProductRepo()
+    {
+        return $this->getEntityManager()->getRepository(Product::class);
     }
 
     /**
