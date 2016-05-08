@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Product;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -12,19 +13,13 @@ class ProductController extends Controller
 
     /**
      * @Route("/product/{id}", name="product_view")
-     *
-     * @param         $id
+     * @ParamConverter("product", class="AppBundle\Entity\Product")
+     * @param Product $product
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function viewProductAction($id)
+    public function viewProductAction(Product $product)
     {
-        $product = $this->get('doctrine.orm.default_entity_manager')->getRepository(Product::class)->find($id);
-
-        if ( ! $product) {
-            throw new NotFoundHttpException('Could not find the product');
-        }
-
         return $this->render(
             'Product/view.html.twig',
             [
