@@ -21,6 +21,8 @@ class BasketController extends Controller
     public function addToBasketAction(Request $request)
     {
         $productId = $request->get('product_id');
+
+        /** @var Product $product */
         $product = $this->getProductRepo()->find($productId);
 
         if ( ! $product) {
