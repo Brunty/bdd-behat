@@ -32,4 +32,4 @@ Feature: Product basket
   Scenario: The delivery is calculated for a £100 basket
     Given there is a "24 inch TV", which costs £100.00
      When I add the "24 inch TV" to the basket
-      Then the overall basket price should be £110.00
+     Then the overall basket price should be £110.00
