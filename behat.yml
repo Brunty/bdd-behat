@@ -2,16 +2,8 @@ default:
     suites:
         domain:
             filters:
-                tags: "@domain&&~@wip&&~@inprog"
+                tags: "@domain"
             contexts:
                 - Contexts\Domain\BasketDomainContext
     autoload:
         '': '%paths.base%/features/bootstrap'
-    extensions:
-        Behat\MinkExtension:
-            base_url:  'http://127.0.0.1:8000'
-            sessions:
-                default:
-                    goutte: ~
-        SensioLabs\Behat\PageObjectExtension: ~
-        Behat\Symfony2Extension: ~
