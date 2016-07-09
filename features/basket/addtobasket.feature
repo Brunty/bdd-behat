@@ -32,7 +32,7 @@ Feature: Product basket
      Then I should have 2 products in the basket
       And the overall basket price should be £65
 
-  @domain @webui
+  @domain @webui @javascript
   Scenario: The delivery is calculated for a £100 basket
     Given there is a "24 inch TV", which costs £100
      When I add the "24 inch TV" to the basket

@@ -2,25 +2,37 @@ default:
     suites:
         domain:
             filters:
-                tags: "@domain&&~@wip&&~@inprog"
+                tags: '@domain&&~@wip&&~@inprog'
             contexts:
                 - Contexts\Domain\BasketDomainContext
         wip:
             filters:
-                tags: "@wip,@inprog"
+                tags: '@wip,@inprog'
         webui:
             filters:
-                tags: "@webui&&~@wip"
+                tags: '@webui&&~@wip&&~@javascript'
+            contexts:
+                - Contexts\WebUi\BasketWebUiContext
+                - Contexts\DB\SchemaContext
+        javascript:
+            filters:
+                tags: '@javascript'
             contexts:
                 - Contexts\WebUi\BasketWebUiContext
                 - Contexts\DB\SchemaContext
     autoload:
         '': '%paths.base%/features/bootstrap'
     extensions:
+        Cjm\Behat\StepThroughExtension: ~
         Behat\MinkExtension:
             base_url:  'http://127.0.0.1:8000/app_test.php/'
             sessions:
                 default:
                     goutte: ~
+            browser_name: 'chrome'
+            javascript_session: selenium2
+            selenium2:
+                wd_host: 'http://127.94.0.1:4444/wd/hub'
+                capabilities: { "browser": "chrome", "version": "ANY", "deviceType": "ANY" }
         SensioLabs\Behat\PageObjectExtension: ~
         Behat\Symfony2Extension: ~
