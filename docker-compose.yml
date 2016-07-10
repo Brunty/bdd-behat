@@ -42,18 +42,10 @@ services:
         links:
             - db
 
-    hub:
-        container_name: bdd_selenium_hub_1
-        image: selenium/hub
+    selenium:
+        container_name: bdd_selenium_1
+        image: selenium/standalone-chrome-debug
+        command: bash -c "sed -e '19a\echo no_proxy >> asseluser' /opt/bin/entry_point.sh | bash"
         ports:
             - 4444:4444
-
-    chrome:
-        container_name: bdd_selenium_chrome_1
-        image: selenium/node-chrome
-        links:
-            - hub
-        depends_on:
-            - hub
-        environment:
-            HUB_PORT_4444_TCP_ADDR: bdd_selenium_hub_1
+            - 5900:5900

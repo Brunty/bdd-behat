@@ -32,6 +32,6 @@ default:
             browser_name: 'chrome'
             javascript_session: selenium2
             selenium2:
-                wd_host: 'http://bdd_selenium_hub_1:4444/wd/hub'
+                wd_host: 'http://bdd_selenium_1:4444/wd/hub'
         SensioLabs\Behat\PageObjectExtension: ~
         Behat\Symfony2Extension: ~

@@ -29,10 +29,5 @@ And then visit http://bdd.dev in your browser. You'll likely get an error that t
 To run any command within the container, simply use:
 `docker exec -it <container_name> <command>`
 
-#### Examples:
-To run composer install:
-`docker exec -it bdd_php_1 composer install`
-To execute a behat suite:
-`docker exec -it bdd_php_1 /app/bin/behat --suite=<suite_name> -c /app/behat.yml`
-To run doctrine migrations:
-`docker exec -it bdd_php_1 /app/bin/console doctrine:migrations:migrate`
+#### Helpful scripts:
+In the `./scripts` directory there's scripts to help with running commands, for each of the behat suites, to viewing selenium via VNC or re-creating the docker containers.
