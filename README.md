@@ -15,7 +15,6 @@ This repo ships with a `docker-compose.yml` file that will use `docker-compose` 
 
 To get this repo up and running inside docker, run:
 
-`$ docker-compose build`
 `$ docker-compose up -d`
 
 Add the following to your `/etc/hosts` file:
