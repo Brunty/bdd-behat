@@ -25,7 +25,7 @@ default:
     extensions:
         Cjm\Behat\StepThroughExtension: ~
         Behat\MinkExtension:
-            base_url:  'http://127.0.0.1:8000/app_test.php/'
+            base_url:  'http://bdd_web_1/app_test.php/'
             sessions:
                 default:
                     goutte: ~
