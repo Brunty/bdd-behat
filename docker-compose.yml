@@ -3,6 +3,7 @@ services:
     web:
         container_name: bdd_web_1
         build: docker/nginx
+        working_dir: /app
         ports:
             - 80:80
         links:
@@ -16,6 +17,7 @@ services:
     app:
         container_name: bdd_app_1
         image: busybox:latest
+        working_dir: /app
         volumes:
             - .:/app
 
@@ -44,6 +46,7 @@ services:
     php:
         container_name: bdd_php_1
         build: docker/php-fpm
+        working_dir: /app
         volumes_from:
             - app
         links:
