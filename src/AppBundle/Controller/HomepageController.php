@@ -10,7 +10,7 @@ class HomepageController extends Controller
 {
 
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="homepage", methods={"GET"})
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */

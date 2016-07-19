@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
 
     /**
-     * @Route("/product/{id}", name="product_view")
+     * @Route("/product/{id}", name="product_view", methods={"GET"})
      *
      * @param         $id
      *
