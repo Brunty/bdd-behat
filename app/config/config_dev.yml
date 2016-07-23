@@ -32,3 +32,5 @@ monolog:
 
 swiftmailer:
     disable_delivery: true
+    spool:
+        type: memory
