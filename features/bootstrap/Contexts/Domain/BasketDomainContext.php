@@ -6,9 +6,12 @@ use AppBundle\Entity\Product;
 use AppBundle\Entity\Basket;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use PHPUnit_Framework_Assert as Assert;
+use Transformers\CountTransformer;
 
 class BasketDomainContext implements SnippetAcceptingContext
 {
+
+    use CountTransformer;
 
     const SESSION_ID = 'ThisIsASessionID';
 
@@ -30,7 +33,7 @@ class BasketDomainContext implements SnippetAcceptingContext
     /**
      * @Given there is a :product, which costs £:price
      */
-    public function thereIsAWhichCostsPs($product, $price)
+    public function thereIsAProductWhichCosts($product, $price)
     {
         $this->products[$product] = new Product($product, $price);
     }
@@ -38,7 +41,7 @@ class BasketDomainContext implements SnippetAcceptingContext
     /**
      * @When I add the :product to the basket
      */
-    public function iAddTheToTheBasket($product)
+    public function iAddTheProductToTheBasket($product)
     {
         $this->basket->addProduct($this->products[$product]);
     }
@@ -46,7 +49,7 @@ class BasketDomainContext implements SnippetAcceptingContext
     /**
      * @Then the overall basket price should be £:price
      */
-    public function theOverallBasketPriceShouldBePs($price)
+    public function theOverallBasketPriceShouldBe($price)
     {
         Assert::assertEquals($price, $this->basket->getTotalPrice());
     }
@@ -54,8 +57,8 @@ class BasketDomainContext implements SnippetAcceptingContext
     /**
      * @Then I should have :count product(s) in the basket
      */
-    public function iShouldHaveProductsInTheBasket($count)
+    public function iShouldHaveNProductsInTheBasket($count)
     {
-        Assert::assertCount((int)$count, $this->basket);
+        Assert::assertCount($count, $this->basket);
     }
 }

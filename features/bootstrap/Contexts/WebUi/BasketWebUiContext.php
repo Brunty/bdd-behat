@@ -21,7 +21,7 @@ class BasketWebUiContext extends MinkContext implements KernelAwareContext, Snip
     /**
      * @Given there is a :productName, which costs £:price
      */
-    public function thereIsAWhichCostsPs($productName, $price)
+    public function thereIsAProductWhichCosts($productName, $price)
     {
         $product = new Product($productName, $price);
         $em = $this->getEntityManager();
@@ -32,7 +32,7 @@ class BasketWebUiContext extends MinkContext implements KernelAwareContext, Snip
     /**
      * @When I add the :product to the basket
      */
-    public function iAddTheToTheBasket(Product $product)
+    public function iAddTheProductToTheBasket(Product $product)
     {
         $this->visit(sprintf('/product/%s', $product->getId()));
         $this->pressButton('add_to_basket');
@@ -41,7 +41,7 @@ class BasketWebUiContext extends MinkContext implements KernelAwareContext, Snip
     /**
      * @Then I should have :number product(s) in the basket
      */
-    public function iShouldHaveProductInTheBasket($number)
+    public function iShouldHaveNProductsInTheBasket($number)
     {
         $this->assertElementContains('#numberOfItems', $number);
     }
@@ -49,7 +49,7 @@ class BasketWebUiContext extends MinkContext implements KernelAwareContext, Snip
     /**
      * @Then the overall basket price should be £:price
      */
-    public function theOverallBasketPriceShouldBePs($price)
+    public function theOverallBasketPriceShouldBe($price)
     {
         $this->assertElementContains('#basketTotalPrice', $price);
     }

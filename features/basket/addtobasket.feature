@@ -14,7 +14,7 @@ Feature: Product basket
   # Adding multiple of the same product to the basket (would require a change to the way the basket and product entities relate to each other
   # Dealing with prices that are edge-cases to the above rules
 
-  # When dealing with UI tests, depending on what's the important part, you can often do the setup (Given) without interacting with the UI, and only really perform the action (When) step through the UI, doing the assertion (Then) at a lower level (DB etc)
+  # When dealing with UI tests, depending on what's the important part, you can often do the setup (Given) without interacting with the UI, and only really perform the action (When) step through the UI, doing the assertion (Then) at a lower level
 
   @domain @webui
   Scenario: Buying a single product
