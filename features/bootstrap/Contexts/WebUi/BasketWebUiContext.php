@@ -35,7 +35,7 @@ class BasketWebUiContext extends MinkContext implements KernelAwareContext, Snip
     public function iAddTheToTheBasket(Product $product)
     {
         $this->visit(sprintf('/product/%s', $product->getId()));
-        $this->pressButton('Add to basket');
+        $this->pressButton('add_to_basket');
     }
 
     /**
