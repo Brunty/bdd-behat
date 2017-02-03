@@ -4,10 +4,10 @@ namespace Contexts\Domain;
 
 use AppBundle\Entity\Product;
 use AppBundle\Entity\Basket;
-use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Behat\Context\Context;
 use PHPUnit_Framework_Assert as Assert;
 
-class BasketDomainContext implements SnippetAcceptingContext
+class BasketDomainContext implements Context
 {
 
     const SESSION_ID = 'ThisIsASessionID';
