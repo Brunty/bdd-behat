@@ -4,8 +4,9 @@ services:
         container_name: bdd_web_1
         build: docker/nginx
         working_dir: /app
-        ports:
-            - 80:80
+        environment:
+            - VIRTUAL_HOST=bdd.docker
+            - VIRTUAL_PORT=80
         links:
             - php
         volumes_from:
