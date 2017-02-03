@@ -24,14 +24,14 @@ default:
         '': '%paths.base%/features/bootstrap'
     extensions:
         Cjm\Behat\StepThroughExtension: ~
+        Behat\Symfony2Extension: ~
         Behat\MinkExtension:
             base_url:  'http://bdd_web_1/app_test.php/'
             sessions:
                 default:
-                    goutte: ~
+                    symfony2: ~
             browser_name: 'chrome'
             javascript_session: selenium2
             selenium2:
                 wd_host: 'http://bdd_selenium_1:4444/wd/hub'
         SensioLabs\Behat\PageObjectExtension: ~
-        Behat\Symfony2Extension: ~
