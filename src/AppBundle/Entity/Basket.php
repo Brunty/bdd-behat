@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace AppBundle\Entity;
 
 class Basket implements \Countable
@@ -23,34 +25,22 @@ class Basket implements \Countable
      */
     protected $productsPrice = 0.0;
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param Product $product
-     */
     public function addProduct(Product $product)
     {
         // TODO - implement this
     }
 
-    /**
-     * @return float
-     */
-    public function getTotalPrice()
+    public function getTotalPrice(): float
     {
         // TODO - implement this
     }
 
-    /**
-     * @return int
-     */
-    public function count()
+    public function count(): int
     {
         // TODO - implement this
     }
