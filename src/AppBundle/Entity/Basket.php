@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -40,86 +43,56 @@ class Basket implements \Countable
      */
     protected $productsPrice = 0.0;
 
-    /**
-     * @param string $session
-     */
-    public function __construct($session)
+    public function __construct(string $session)
     {
         $this->session = $session;
         $this->products = new ArrayCollection;
     }
 
-    /**
-     * @return string
-     */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @param Product $product
-     */
     public function addProduct(Product $product)
     {
         $this->products[] = $product;
         $this->productsPrice += $product->getPrice();
     }
 
-    /**
-     * @return Product[]|ArrayCollection
-     */
-    public function getProducts()
+    public function getProducts(): Collection
     {
         return $this->products;
     }
 
-    /**
-     * @return float
-     */
-    public function getTotalPrice()
+    public function getTotalPrice(): float
     {
         $delivery = ($this->productsPrice > 100) ? 0 : 10;
 
         return $this->productsPrice + $delivery;
     }
 
-    /**
-     * @return int
-     */
-    public function count()
+    public function count(): int
     {
         return count($this->products);
     }
 
-    /**
-     * @return float
-     */
-    public function getProductsPrice()
+    public function getProductsPrice(): float
     {
         return $this->productsPrice;
     }
 
-    /**
-     * @param float $productsPrice
-     */
-    public function setProductsPrice($productsPrice)
+    public function setProductsPrice(float $productsPrice)
     {
         $this->productsPrice = $productsPrice;
     }
 
-    /**
-     * @param string $session
-     */
-    public function setSession($session)
+    public function setSession(string $session)
     {
         $this->session = $session;
     }
 
-    /**
-     * @return string
-     */
-    public function getSession()
+    public function getSession(): string
     {
         return $this->session;
     }
