@@ -2,15 +2,16 @@
 
 namespace Contexts\DB;
 
+use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
 use Behat\Symfony2Extension\Context\KernelDictionary;
 use Contexts\DB\EntityManager as ContextEntityManager;
 use Doctrine\Common\Cache\ClearableCache;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Platforms\MySqlPlatform;
 use Doctrine\ORM\EntityManager as DoctrineEntityManager;
 use Doctrine\ORM\Tools\SchemaTool;
-use Behat\Behat\Hook\Scope\ScenarioScope;
 
 class SchemaContext implements KernelAwareContext
 {
@@ -18,64 +19,25 @@ class SchemaContext implements KernelAwareContext
     use KernelDictionary;
     use ContextEntityManager;
 
+    /**
+     * @var ORMPurger
+     */
     private $purger;
-    private static $hasSchema = false;
-
-    protected $tags = [];
-    protected $tagLoaded = false;
 
     /**
-     * @BeforeScenario
+     * @var bool
      */
-    public function storeTags($event)
-    {
-        if (false === $this->tagLoaded) {
-            if ($event instanceof ScenarioScope) {
-                if (null !== $feature = $event->getFeature()) {
-                    $this->tags = array_merge($this->tags, $feature->getTags());
-                }
-                if (null !== $scenario = $event->getScenario()) {
-                    $this->tags = array_merge($this->tags, $scenario->getTags());
-                }
-            }
-            $this->tagLoaded = true;
-        }
-    }
+    private static $hasSchema = false;
 
-    protected function hasTag($name)
-    {
-        return in_array($name, $this->tags);
-    }
+    /**
+     * @var array
+     */
+    protected $tags = [];
 
-    protected function hasTags(array $names)
-    {
-        foreach ($names as $name) {
-            if ( ! (0 === strpos($name, '~')) !== $this->hasTag(str_replace('~', '', $name))) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    protected function getTagContent($name)
-    {
-        $content = [];
-
-        foreach ($this->tags as $tag) {
-            $matches = [];
-            if (preg_match(sprintf('/^%s\((.*)\)$/', $name), $tag, $matches)) {
-                $content[] = end($matches);
-            }
-        }
-
-        return $content;
-    }
-
-    protected function getTags()
-    {
-        return $this->tags;
-    }
+    /**
+     * @var bool
+     */
+    protected $tagLoaded = false;
 
     function __construct(ORMPurger $purger = null)
     {
@@ -83,20 +45,17 @@ class SchemaContext implements KernelAwareContext
     }
 
     /**
-     * @BeforeScenario
+     * @BeforeScenario @reset-em
      */
-    public function beforeScenario($event)
+    public function beforeScenario(BeforeScenarioScope $scope)
     {
-        $this->storeTags($event);
-        if ($this->hasTags(['reset-em'])) {
-            $entityManager = $this->getEntityManager();
-            $this->preparePurger($entityManager);
-            $this->purger->purge();
-            $this->resetPurger($entityManager);
-        }
+        $entityManager = $this->getEntityManager();
+        $this->preparePurger($entityManager);
+        $this->purger->purge();
+        $this->resetPurger($entityManager);
     }
 
-    protected function getMetadata(DoctrineEntityManager $entityManager)
+    private function getMetadata(DoctrineEntityManager $entityManager): array
     {
         return $entityManager->getMetadataFactory()->getAllMetadata();
     }
@@ -107,7 +66,7 @@ class SchemaContext implements KernelAwareContext
      * @param DoctrineEntityManager $entityManager
      * @param bool                  $bool
      *
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      */
     private function setForeignKeyChecks(DoctrineEntityManager $entityManager, $bool)
     {
@@ -118,12 +77,7 @@ class SchemaContext implements KernelAwareContext
         }
     }
 
-    /**
-     * @param $entityManager
-     *
-     * @return array
-     */
-    private function preparePurger(DoctrineEntityManager $entityManager)
+    private function preparePurger(DoctrineEntityManager $entityManager): ORMPurger
     {
         $this->setForeignKeyChecks($entityManager, false);
         if ( ! self::$hasSchema) {
