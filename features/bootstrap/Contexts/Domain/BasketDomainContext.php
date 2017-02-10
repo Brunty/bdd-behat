@@ -2,6 +2,7 @@
 
 namespace Contexts\Domain;
 
+use Behat\Behat\Tester\Exception\PendingException;
 use AppBundle\Entity\Product;
 use AppBundle\Entity\Basket;
 use Behat\Behat\Context\Context;
@@ -9,8 +10,6 @@ use PHPUnit_Framework_Assert as Assert;
 
 class BasketDomainContext implements Context
 {
-
-    const SESSION_ID = 'ThisIsASessionID';
 
     /**
      * @var Basket
@@ -24,6 +23,6 @@ class BasketDomainContext implements Context
 
     public function __construct()
     {
-        $this->basket = new Basket(self::SESSION_ID);
+        $this->basket = new Basket;
     }
 }
