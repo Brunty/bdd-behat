@@ -1,4 +1,4 @@
-@reset-em
+@reset-em @alice(products)
 Feature: Product basket
   So that I can buy gifts for friends
   As a customer

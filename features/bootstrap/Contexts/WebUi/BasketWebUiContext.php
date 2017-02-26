@@ -40,10 +40,7 @@ class BasketWebUiContext extends MinkContext implements KernelAwareContext, Snip
      */
     public function thereIsAProductWhichCosts($productName, $price)
     {
-        $product = new Product($productName, $price);
-        $em = $this->getEntityManager();
-        $em->persist($product);
-        $em->flush();
+        // now we're using alice, this step doesn't need to do anything...
     }
 
     /**

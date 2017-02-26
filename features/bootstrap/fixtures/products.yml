@@ -1,0 +1,9 @@
+AppBundle\Entity\Product:
+    playstation4:
+        __construct: ['PlayStation 4', 250]
+    playstation4Controller:
+        __construct: ['Playstation 4 Controller', 45]
+    hdmiCable:
+        __construct: ['HDMI Cable', 10]
+    24inchTV:
+        __construct: ['24 inch TV', 100]
