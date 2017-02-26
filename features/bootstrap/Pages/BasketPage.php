@@ -9,11 +9,6 @@ class BasketPage extends Page
 
     protected $path = '/basket';
 
-    public function addToBasket()
-    {
-        $this->pressButton('add_to_basket');
-    }
-
     public function numberOfItems()
     {
         return $this->find('css', '#numberOfItems')->getText();
