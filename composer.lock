@@ -4333,30 +4333,33 @@
         },
         {
             "name": "sensiolabs/behat-page-object-extension",
-            "version": "v2.0.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/BehatPageObjectExtension.git",
-                "reference": "b07ebd668ebdafb26f6cf75604161c4973c7e1c5"
+                "reference": "1d3f08e67a9131feb78cfc4331068755faceef2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/BehatPageObjectExtension/zipball/b07ebd668ebdafb26f6cf75604161c4973c7e1c5",
-                "reference": "b07ebd668ebdafb26f6cf75604161c4973c7e1c5",
+                "url": "https://api.github.com/repos/sensiolabs/BehatPageObjectExtension/zipball/1d3f08e67a9131feb78cfc4331068755faceef2d",
+                "reference": "1d3f08e67a9131feb78cfc4331068755faceef2d",
                 "shasum": ""
             },
             "require": {
-                "behat/behat": "^3.0",
+                "behat/behat": "^3.0.6",
+                "behat/mink": "^1.6",
                 "behat/mink-extension": "^2.0",
-                "ocramius/proxy-manager": "^1.0",
+                "ocramius/proxy-manager": "^1.0||^2.0",
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "behat/mink-goutte-driver": "~1.0",
-                "bossa/phpspec2-expect": "~1.0",
-                "phpspec/phpspec": "~2.0",
-                "symfony/filesystem": "^2.3|^3.0",
-                "symfony/process": "^2.3|^3.0"
+                "behat/mink-goutte-driver": "^1.0",
+                "bossa/phpspec2-expect": "^1.0.3||^2.0",
+                "fabpot/goutte": "^1.0.4||^2.0||^3.0",
+                "phpspec/phpspec": "^2.5||^3.0",
+                "symfony/filesystem": "^2.8||^3.0",
+                "symfony/process": "^2.8||^3.0",
+                "symfony/yaml": "^2.8||^3.0"
             },
             "suggest": {
                 "bossa/phpspec2-expect": "Allows to use PHPSpec2 matchers in Behat context files"
@@ -4383,7 +4386,7 @@
                 },
                 {
                     "name": "Jakub Zalas",
-                    "email": "jzalas@sensiolabs.co.uk"
+                    "email": "jakub@zalas.pl"
                 }
             ],
             "description": "Page object extension for Behat",
@@ -4393,7 +4396,7 @@
                 "Behat",
                 "page"
             ],
-            "time": "2016-06-12 13:18:12"
+            "time": "2017-01-18 22:05:14"
         },
         {
             "name": "symfony/phpunit-bridge",

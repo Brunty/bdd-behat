@@ -8,8 +8,11 @@ use Behat\MinkExtension\Context\MinkContext;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
 use Behat\Symfony2Extension\Context\KernelDictionary;
 use Contexts\DB\EntityManager;
+use Pages\BasketPage;
+use Pages\ProductPage;
 use Transformers\PriceTransformer;
 use Transformers\ProductFromDatabaseTransformer;
+use \PHPUnit_Framework_Assert as Assert;
 
 class BasketWebUiContext extends MinkContext implements KernelAwareContext, SnippetAcceptingContext
 {
@@ -18,6 +21,20 @@ class BasketWebUiContext extends MinkContext implements KernelAwareContext, Snip
     use PriceTransformer;
     use EntityManager;
 
+    /**
+     * @var ProductPage
+     */
+    private $productPage;
+    /**
+     * @var BasketPage
+     */
+    private $basketPage;
+
+    public function __construct(ProductPage $productPage, BasketPage $basketPage)
+    {
+        $this->productPage = $productPage;
+        $this->basketPage = $basketPage;
+    }
     /**
      * @Given there is a :productName, which costs £:price
      */
@@ -34,8 +51,8 @@ class BasketWebUiContext extends MinkContext implements KernelAwareContext, Snip
      */
     public function iAddTheProductToTheBasket(Product $product)
     {
-        $this->visit(sprintf('/product/%s', $product->getId()));
-        $this->pressButton('add_to_basket');
+        $this->productPage->open(['id' => $product->getId()]);
+        $this->productPage->addToBasket();
     }
 
     /**
@@ -43,7 +60,7 @@ class BasketWebUiContext extends MinkContext implements KernelAwareContext, Snip
      */
     public function iShouldHaveNProductsInTheBasket($number)
     {
-        $this->assertElementContains('#numberOfItems', $number);
+        Assert::assertEquals($number, $this->basketPage->numberOfItems());
     }
 
     /**
@@ -51,6 +68,6 @@ class BasketWebUiContext extends MinkContext implements KernelAwareContext, Snip
      */
     public function theOverallBasketPriceShouldBe($price)
     {
-        $this->assertElementContains('#basketTotalPrice', $price);
+        Assert::assertEquals($price, $this->basketPage->basketPrice());
     }
 }

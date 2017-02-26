@@ -24,6 +24,7 @@ default:
         '': '%paths.base%/features/bootstrap'
     extensions:
         Cjm\Behat\StepThroughExtension: ~
+        SensioLabs\Behat\PageObjectExtension: ~
         Behat\Symfony2Extension: ~
         Behat\MinkExtension:
             base_url:  'http://bdd_web_1/app_test.php/'
