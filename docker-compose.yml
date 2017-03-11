@@ -10,18 +10,10 @@ services:
         links:
             - php
         volumes_from:
-            - app
+            - container:bdd_app-unison-sync
         depends_on:
             - db
             - php
-
-    app:
-        container_name: bdd_app_1
-        image: busybox:latest
-        working_dir: /app
-        volumes:
-            - .:/app
-
 
     db:
         container_name: bdd_db_1
@@ -34,21 +26,27 @@ services:
             MYSQL_USER: root
             MYSQL_PASSWORD: root
         volumes_from:
-            - db-data
-        depends_on:
-            - db-data
-
-    db-data:
-        container_name: bdd_dbdata_1
-        image: busybox:latest
-        volumes:
-            - ./var/lib/mysql:/var/lib/mysql
+            - container:bdd_db-unison-sync
 
     php:
         container_name: bdd_php_1
         build: docker/php-fpm
         working_dir: /app
         volumes_from:
-            - app
+            - container:bdd_app-unison-sync
         links:
             - db
+
+    selenium:
+        container_name: bdd_selenium_1
+        image: selenium/standalone-chrome-debug
+        command: bash -c "sed -e '19a\echo no_proxy >> asseluser' /opt/bin/entry_point.sh | bash"
+        ports:
+            - 4444:4444
+            - 5900:5900
+
+volumes:
+    bdd_app-unison-sync:
+        external: true
+    bdd_db-unison-sync:
+        external: true
