@@ -5,7 +5,7 @@ namespace Contexts\Domain;
 use AppBundle\Entity\Product;
 use AppBundle\Entity\Basket;
 use Behat\Behat\Context\Context;
-use PHPUnit_Framework_Assert as Assert;
+use PHPUnit\Framework\Assert;
 use Transformers\CountTransformer;
 
 class BasketDomainContext implements Context

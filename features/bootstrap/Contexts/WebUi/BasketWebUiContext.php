@@ -12,7 +12,7 @@ use Pages\BasketPage;
 use Pages\ProductPage;
 use Transformers\PriceTransformer;
 use Transformers\ProductFromDatabaseTransformer;
-use \PHPUnit_Framework_Assert as Assert;
+use PHPUnit\Framework\Assert;
 
 class BasketWebUiContext extends MinkContext implements KernelAwareContext, SnippetAcceptingContext
 {

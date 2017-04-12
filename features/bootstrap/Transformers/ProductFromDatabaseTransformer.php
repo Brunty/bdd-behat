@@ -16,7 +16,7 @@ trait ProductFromDatabaseTransformer
      * @return Product
      * @throws \Exception
      */
-    public function castProductNameToProductEntity($name)
+    public function castProductNameToProductEntity(string $name): Product
     {
         /** @var EntityManager $em */
         $em = $this->getEntityManager();
