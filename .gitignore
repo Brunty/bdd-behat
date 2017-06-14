@@ -17,4 +17,8 @@
 !/bin/console
 !/bin/symfony_requirements
 /bin/*
+<<<<<<< HEAD
 .docker-sync
+=======
+/.docker-sync
+>>>>>>> 3f8a43b... Documentation update
