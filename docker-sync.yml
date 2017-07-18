@@ -1,14 +1,11 @@
 version: "2"
-
 options:
     verbose: true
 syncs:
     bdd_app-unison-sync:
         src: '.'
-        dest: '/app'
-        sync_strategy: 'unison'
+        sync_strategy: 'native_osx'
         sync_userid: '1000'
     bdd_db-unison-sync:
         src: './var/lib/mysql'
-        dest: '/var/lib/mysql'
-        sync_strategy: 'unison'
+        sync_strategy: 'native_osx'
